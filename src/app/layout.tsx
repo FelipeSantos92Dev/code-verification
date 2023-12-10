@@ -15,7 +15,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html suppressHydrationWarning lang="pt-BR">
       <body className={inter.className}>
         <Toaster />
-        {children}
+        <div className={`flex-col`}>
+          <div className={`flex-1 space-y-4 p-8 pt-20`}>{children}</div>
+        </div>
       </body>
     </html>
   )
