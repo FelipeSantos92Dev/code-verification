@@ -1,6 +1,5 @@
 import { DataTable } from '@/components/data-table'
 import { columns } from '@/components/ui/columns'
-
 import axios from 'axios'
 
 export default async function Tickets() {
@@ -8,7 +7,6 @@ export default async function Tickets() {
   const response = await axios.get(apiURL)
 
   const tickets = response.data
-  console.log(tickets)
 
   return (
     <div>

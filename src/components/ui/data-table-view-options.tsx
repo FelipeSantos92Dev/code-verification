@@ -27,7 +27,7 @@ export function DataTableViewOptions<TData>({ table }: DataTableViewOptionsProps
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end" className="w-[150px]">
-        <DropdownMenuLabel>Toggle columns</DropdownMenuLabel>
+        <DropdownMenuLabel>Esconder colunas</DropdownMenuLabel>
         <DropdownMenuSeparator />
         {table
           .getAllColumns()
@@ -40,7 +40,15 @@ export function DataTableViewOptions<TData>({ table }: DataTableViewOptionsProps
                 checked={column.getIsVisible()}
                 onCheckedChange={value => column.toggleVisibility(!!value)}
               >
-                {column.id}
+                {column.id === 'code'
+                  ? 'Código'
+                  : column.id === 'name'
+                  ? 'Nome'
+                  : column.id === 'email'
+                  ? 'E-mail'
+                  : column.id === 'whatsapp'
+                  ? 'Whatsapp'
+                  : 'Válido'}
               </DropdownMenuCheckboxItem>
             )
           })}

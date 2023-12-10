@@ -11,93 +11,52 @@ import { DataTableColumnHeader } from './data-table-column-header'
 import { DataTableRowActions } from './data-table-row-actions'
 
 export const columns: ColumnDef<Ticket>[] = [
-  /* {
-    id: 'select',
-    header: ({ table }) => (
-      <Checkbox
-        checked={table.getIsAllPageRowsSelected() || (table.getIsSomePageRowsSelected() && 'indeterminate')}
-        onCheckedChange={value => table.toggleAllPageRowsSelected(!!value)}
-        aria-label="Select all"
-        className="translate-y-[2px]"
-      />
-    ),
-    cell: ({ row }) => (
-      <Checkbox
-        checked={row.getIsSelected()}
-        onCheckedChange={value => row.toggleSelected(!!value)}
-        aria-label="Select row"
-        className="translate-y-[2px]"
-      />
-    ),
-    enableSorting: false,
-    enableHiding: false
-  }, */
   {
-    accessorKey: 'id',
-    header: ({ column }) => <DataTableColumnHeader column={column} title="Id" />,
-    cell: ({ row }) => <div className="w-[80px]">{row.getValue('id')}</div>,
-    enableSorting: false,
-    enableHiding: false
+    accessorKey: 'code',
+    header: ({ column }) => <DataTableColumnHeader column={column} title="Código" />,
+    cell: ({ row }) => <div className="w-[40px]">{row.getValue('code')}</div>,
+    enableSorting: true,
+    enableHiding: true
   },
   {
-    accessorKey: 'title',
-    header: ({ column }) => <DataTableColumnHeader column={column} title="Título" />,
-    cell: ({ row }) => {
-      const label = labels.find(label => label.value === row.original.code)
-
-      return (
-        <div className="flex space-x-2">
-          {label && <Badge variant="outline">{label.label}</Badge>}
-          <span className="max-w-[500px] truncate font-medium">{row.getValue('title')}</span>
-        </div>
-      )
-    }
+    accessorKey: 'name',
+    header: ({ column }) => <DataTableColumnHeader column={column} title="Nome" />,
+    cell: ({ row }) => <div className="w-[100px]">{row.getValue('name')}</div>,
+    enableSorting: true,
+    enableHiding: true
   },
   {
-    accessorKey: 'priority',
-    header: ({ column }) => <DataTableColumnHeader column={column} title="Critério" />,
+    accessorKey: 'email',
+    header: ({ column }) => <DataTableColumnHeader column={column} title="E-mail" />,
+    cell: ({ row }) => <div className="w-[100px]">{row.getValue('email')}</div>,
+    enableSorting: true,
+    enableHiding: true
+  },
+  {
+    accessorKey: 'whatsapp',
+    header: ({ column }) => <DataTableColumnHeader column={column} title="Whatsapp" />,
+    cell: ({ row }) => <div className="w-[80px]">{row.getValue('whatsapp')}</div>,
+    enableSorting: true,
+    enableHiding: true
+  },
+  {
+    accessorKey: 'verified',
+    header: ({ column }) => <DataTableColumnHeader column={column} title="Válido" />,
     cell: ({ row }) => {
-      const priority = priorities.find(priority => priority.value === row.getValue('priority'))
-
-      if (!priority) {
-        return null
-      }
+      const value = row.getValue('verified')
 
       return (
-        <div className="flex items-center">
-          {priority.icon && <priority.icon className="mr-2 h-4 w-4 text-muted-foreground" />}
-          <span>{priority.label}</span>
+        <div className="w-[40px]">
+          {value ? <Badge variant="destructive">Não</Badge> : <Badge variant="success">Sim</Badge>}
         </div>
       )
     },
-    filterFn: (row, id, value) => {
-      return value.includes(row.getValue(id))
-    }
-  },
-  {
-    accessorKey: 'status',
-    header: ({ column }) => <DataTableColumnHeader column={column} title="Status" />,
-    cell: ({ row }) => {
-      const status = statuses.find(status => status.value === row.getValue('status'))
-
-      if (!status) {
-        return null
-      }
-
-      return (
-        <div className="flex w-[100px] items-center">
-          {status.icon && <status.icon className="mr-2 h-4 w-4 text-muted-foreground" />}
-          <span>{status.label}</span>
-        </div>
-      )
-    },
-    filterFn: (row, id, value) => {
-      return value.includes(row.getValue(id))
-    }
-  },
-
-  {
-    id: 'actions',
-    cell: ({ row }) => <DataTableRowActions row={row} />
+    enableSorting: true,
+    enableHiding: true
   }
+
+  // {
+  //   id: 'actions',
+  //   cell: ({ row }) => <DataTableRowActions row={row} />
+  // }
 ]

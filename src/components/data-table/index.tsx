@@ -1,6 +1,6 @@
 'use client'
 
-import * as React from 'react'
+import { useState } from 'react'
 import {
   ColumnDef,
   ColumnFiltersState,
@@ -27,10 +27,10 @@ interface DataTableProps<TData, TValue> {
 }
 
 export function DataTable<TData, TValue>({ columns, data }: DataTableProps<TData, TValue>) {
-  const [rowSelection, setRowSelection] = React.useState({})
-  const [columnVisibility, setColumnVisibility] = React.useState<VisibilityState>({})
-  const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>([])
-  const [sorting, setSorting] = React.useState<SortingState>([])
+  const [rowSelection, setRowSelection] = useState({})
+  const [columnVisibility, setColumnVisibility] = useState<VisibilityState>({})
+  const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([])
+  const [sorting, setSorting] = useState<SortingState>([])
 
   const table = useReactTable({
     data,

@@ -21,16 +21,16 @@ export function DataTableToolbar<TData>({ table }: DataTableToolbarProps<TData>)
     <div className="flex items-center justify-between">
       <div className="flex flex-1 items-center space-x-2">
         <Input
-          placeholder="Pesquisar..."
-          value={(table.getColumn('title')?.getFilterValue() as string) ?? ''}
-          onChange={event => table.getColumn('title')?.setFilterValue(event.target.value)}
+          placeholder="Pesquisar código..."
+          value={(table.getColumn('code')?.getFilterValue() as string) ?? ''}
+          onChange={event => table.getColumn('code')?.setFilterValue(event.target.value)}
           className="h-8 w-[150px] lg:w-[250px]"
         />
         {/*  {table.getColumn('priority') && (
           <DataTableFacetedFilter column={table.getColumn('priority')} title="Critérios" options={priorities} />
         )} */}
-        {table.getColumn('status') && (
-          <DataTableFacetedFilter column={table.getColumn('status')} title="Status" options={statuses} />
+        {table.getColumn('email') && (
+          <DataTableFacetedFilter column={table.getColumn('email')} title="E-mail" options={statuses} />
         )}
         {isFiltered && (
           <Button variant="ghost" onClick={() => table.resetColumnFilters()} className="h-8 px-2 lg:px-3">
