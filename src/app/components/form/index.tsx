@@ -16,7 +16,7 @@ export default function FormComplete() {
   const [whatsapp, setWhatsapp] = useState('')
   const [verified, setVerified] = useState(false)
 
-  const apiURL = 'http://localhost:3000/api/v1/tickets/'
+  const apiURL = '/api/v1/tickets/'
 
   const verifyCode = async () => {
     if (!code) {
