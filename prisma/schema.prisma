@@ -9,3 +9,15 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
+
+model Ticket {
+  id       String  @id @default(uuid())
+  code     String  @unique
+  name     String?
+  email    String?
+  whatsapp String?
+  verified Boolean @default(false)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
