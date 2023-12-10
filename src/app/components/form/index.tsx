@@ -1,6 +1,8 @@
 'use client'
 
 import { useEffect, useState } from 'react'
+import { toast } from 'react-hot-toast'
+
 import { CardTitle, CardDescription, CardHeader, CardContent, Card } from '@/components/ui/card'
 import { Label } from '@/components/ui/label'
 import { Input } from '@/components/ui/input'
@@ -13,8 +15,10 @@ export default function FormComplete() {
   const verifyCode = () => {
     if (code === '1234') {
       setVerified(true)
+      toast.success('Código verificado com sucesso!')
     } else {
       setVerified(false)
+      toast.error('Código inválido!')
     }
   }
 
