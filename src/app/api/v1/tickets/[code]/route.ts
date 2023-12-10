@@ -87,6 +87,7 @@ export async function PATCH(req: Request, { params }: { params: { code: string }
         name,
         email,
         whatsapp,
+        verified: true,
         updatedAt: addHours(new Date(), -3)
       }
     })

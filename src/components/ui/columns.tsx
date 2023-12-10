@@ -21,14 +21,14 @@ export const columns: ColumnDef<Ticket>[] = [
   {
     accessorKey: 'name',
     header: ({ column }) => <DataTableColumnHeader column={column} title="Nome" />,
-    cell: ({ row }) => <div className="w-[100px]">{row.getValue('name')}</div>,
+    cell: ({ row }) => <div className="w-[140px]">{row.getValue('name')}</div>,
     enableSorting: true,
     enableHiding: true
   },
   {
     accessorKey: 'email',
     header: ({ column }) => <DataTableColumnHeader column={column} title="E-mail" />,
-    cell: ({ row }) => <div className="w-[100px]">{row.getValue('email')}</div>,
+    cell: ({ row }) => <div className="w-[120px]">{row.getValue('email')}</div>,
     enableSorting: true,
     enableHiding: true
   },
