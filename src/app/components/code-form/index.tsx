@@ -2,7 +2,6 @@
 
 import { useState } from 'react'
 import { toast } from 'react-hot-toast'
-import { useRouter } from 'next/navigation'
 import axios from 'axios'
 
 import { CardTitle, CardDescription, CardHeader, CardContent, Card } from '@/components/ui/card'
@@ -12,7 +11,6 @@ import { Button } from '@/components/ui/button'
 
 export default function CodeForm() {
   const [code, setCode] = useState('')
-  const router = useRouter()
 
   const apiURL = '/api/v1/tickets/'
 
@@ -26,7 +24,7 @@ export default function CodeForm() {
       await axios.post(apiURL, { code })
       toast.success('Cortesia cadastrada com sucesso')
       setCode('')
-      router.refresh()
+      window.location.reload()
     } catch (err) {
       toast.error('Erro ao cadastrar cortesia')
     }

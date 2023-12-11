@@ -6,7 +6,7 @@ export async function GET() {
   try {
     const tickets = await prisma.ticket.findMany({
       orderBy: {
-        createdAt: 'asc'
+        code: 'asc'
       }
     })
 
