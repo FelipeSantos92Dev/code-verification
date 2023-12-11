@@ -33,7 +33,7 @@ export async function DataTable<TData, TValue>({ columns }: DataTableProps<TData
   const [sorting, setSorting] = useState<SortingState>([])
   const [data, setData] = useState<TData[]>([])
 
-  const apiURL = '/api/v1/tickets/'
+  const apiURL = 'https://www.meusticketsoficial.com.br/api/v1/tickets/'
 
   try {
     const response = await axios.get(apiURL)
