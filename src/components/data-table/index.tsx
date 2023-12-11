@@ -58,7 +58,7 @@ export async function DataTable<TData, TValue>({ columns, data }: DataTableProps
 
   return (
     <div className="space-y-4">
-      <DataTableToolbar table={table} />
+      {/* <DataTableToolbar table={table} /> */}
       <div className="rounded-md border">
         <Table>
           <TableHeader>
@@ -93,7 +93,7 @@ export async function DataTable<TData, TValue>({ columns, data }: DataTableProps
           </TableBody>
         </Table>
       </div>
-      <DataTablePagination table={table} />
+      {/* <DataTablePagination table={table} /> */}
     </div>
   )
 }

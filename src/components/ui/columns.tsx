@@ -15,29 +15,29 @@ export const columns: ColumnDef<Ticket>[] = [
     accessorKey: 'code',
     header: ({ column }) => <DataTableColumnHeader column={column} title="Código" />,
     cell: ({ row }) => <div className="w-[40px]">{row.getValue('code')}</div>,
-    enableSorting: true,
-    enableHiding: true
+    enableSorting: false,
+    enableHiding: false
   },
   {
     accessorKey: 'name',
     header: ({ column }) => <DataTableColumnHeader column={column} title="Nome" />,
     cell: ({ row }) => <div className="w-[140px]">{row.getValue('name')}</div>,
-    enableSorting: true,
-    enableHiding: true
+    enableSorting: false,
+    enableHiding: false
   },
   {
     accessorKey: 'email',
     header: ({ column }) => <DataTableColumnHeader column={column} title="E-mail" />,
     cell: ({ row }) => <div className="w-[120px]">{row.getValue('email')}</div>,
-    enableSorting: true,
-    enableHiding: true
+    enableSorting: false,
+    enableHiding: false
   },
   {
     accessorKey: 'whatsapp',
     header: ({ column }) => <DataTableColumnHeader column={column} title="Whatsapp" />,
     cell: ({ row }) => <div className="w-[80px]">{row.getValue('whatsapp')}</div>,
-    enableSorting: true,
-    enableHiding: true
+    enableSorting: false,
+    enableHiding: false
   },
   {
     accessorKey: 'verified',
@@ -51,8 +51,8 @@ export const columns: ColumnDef<Ticket>[] = [
         </div>
       )
     },
-    enableSorting: true,
-    enableHiding: true
+    enableSorting: false,
+    enableHiding: false
   }
 
   // {

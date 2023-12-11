@@ -3,16 +3,8 @@ import { columns } from '@/components/ui/columns'
 import axios from 'axios'
 
 export default async function Tickets() {
-  //const apiURL = 'https://www.meusticketsoficial.com.br/api/v1/tickets/'
-  const apiURL = '/api/v1/tickets'
-  let tickets = []
+  const response = await axios.get('https://www.meusticketsoficial.com.br/api/v1/tickets/')
+  const tickets = response.data
 
-  try {
-    const response = await axios.get(apiURL)
-    const { data } = response
-    tickets = data
-  } catch (err) {
-    console.log(err)
-  }
   return <DataTable data={tickets} columns={columns} />
 }
