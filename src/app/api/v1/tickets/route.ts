@@ -24,16 +24,13 @@ export async function GET() {
 }
 
 export async function POST(req: NextRequest) {
-  const { code, name, email, whatsapp } = await req.json()
+  const { code } = await req.json()
 
   try {
     // Create ticket
     const ticket = await prisma?.ticket.create({
       data: {
         code,
-        name,
-        email,
-        whatsapp,
         createdAt: addHours(new Date(), -3),
         updatedAt: addHours(new Date(), -3)
       }
