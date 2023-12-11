@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { toast } from 'react-hot-toast'
 import axios from 'axios'
 
@@ -16,55 +16,72 @@ export default function FormComplete() {
   const [whatsapp, setWhatsapp] = useState('')
   const [verified, setVerified] = useState(false)
 
-  const apiURL = 'http://127.0.0.1/api/v1/tickets/'
+  const apiURL = 'api/v1/tickets/'
 
   const verifyCode = async () => {
-    if (!code) {
-      toast.error('Código de cortesia inválido')
+    if (code.length < 1) {
+      toast.error('Preencha o código de cortesia')
       return
     }
 
     try {
-      const response = await axios.get(`${apiURL}${code}`)
+      const response = await axios.get(apiURL + code)
       const ticket = response.data
 
-      if (!ticket.verified) {
+      if (ticket.verified) {
+        toast.error('Código de cortesia já utilizado')
+        return
+      }
+
+      if (ticket) {
         setVerified(true)
-        toast.success('Código verificado com sucesso!')
+        toast.success('Código de cortesia verificado')
       } else {
-        setVerified(false)
-        toast.error('Código já utilizado!')
+        toast.error('Código de cortesia inválido')
       }
     } catch (err) {
-      setVerified(false)
       toast.error('Código de cortesia inválido')
     }
   }
 
   const handleSubmit = async () => {
-    if (!name || !email || !whatsapp) {
-      toast.error('Preencha todos os campos')
+    if (name.length < 1) {
+      toast.error('Preencha o nome completo')
       return
     }
+
+    if (email.length < 1) {
+      toast.error('Preencha o e-mail')
+      return
+    }
+
+    if (whatsapp.length < 1) {
+      toast.error('Preencha o número de whatsapp')
+      return
+    }
+
+    const data = {
+      name,
+      email,
+      whatsapp
+    }
+
     try {
-      const response = await axios.patch(`${apiURL}${code}`, {
-        name,
-        email,
-        whatsapp
-      })
+      const response = await axios.patch(apiURL + code, data)
       const ticket = response.data
 
-      if (ticket.verified) {
-        setVerified(false)
+      if (ticket) {
+        toast.success('Cortesia cadastrada com sucesso!')
         setCode('')
         setName('')
         setEmail('')
-        toast.success('Cortesia cadastrada com sucesso!')
+        setWhatsapp('')
+        setVerified(false)
       } else {
-        toast.error('Código já utilizado!')
+        toast.error('Erro ao cadastrar cortesia!')
       }
     } catch (err) {
-      toast.error('Código de cortesia inválido')
+      toast.error('Erro ao cadastrar cortesia!')
     }
   }
 
@@ -100,7 +117,7 @@ export default function FormComplete() {
                   onChange={e => setName(e.target.value)}
                 />
               </div>
-              <div className="border-t pt-4 space-y-2">
+              <div className="space-y-2">
                 <Label htmlFor="second-input">E-mail</Label>
                 <Input
                   id="second-input"
