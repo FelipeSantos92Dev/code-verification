@@ -24,24 +24,15 @@ import axios from 'axios'
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[]
+  data: TData[]
 }
 
-export async function DataTable<TData, TValue>({ columns }: DataTableProps<TData, TValue>) {
+export async function DataTable<TData, TValue>({ columns, data }: DataTableProps<TData, TValue>) {
   const [rowSelection, setRowSelection] = useState({})
   const [columnVisibility, setColumnVisibility] = useState<VisibilityState>({})
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([])
   const [sorting, setSorting] = useState<SortingState>([])
-  const [data, setData] = useState<TData[]>([])
-
-  const apiURL = 'https://www.meusticketsoficial.com.br/api/v1/tickets/'
-
-  try {
-    const response = await axios.get(apiURL)
-    const tickets = response.data
-    setData(tickets)
-  } catch (err) {
-    console.log(err)
-  }
+  // const [data, setData] = useState<TData[]>([])
 
   const table = useReactTable({
     data,
