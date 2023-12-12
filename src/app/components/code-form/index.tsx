@@ -14,7 +14,8 @@ export default function CodeForm() {
 
   const apiURL = '/api/v1/tickets/'
 
-  const verifyCode = async () => {
+  const verifyCode = async (e: any) => {
+    e.preventDefault()
     if (code.length < 1) {
       toast.error('Preencha o código de cortesia')
       return
@@ -39,20 +40,23 @@ export default function CodeForm() {
           <CardTitle className={`text-center`}>Cadastro Cortesia AnimeGeek 2024</CardTitle>
           <CardDescription className={`text-center`}>Insira o código da cortesia</CardDescription>
         </CardHeader>
-        <CardContent className="space-y-4">
-          <div className="space-y-2">
-            <Label htmlFor="initial-input">Código de cortesia</Label>
-            <Input
-              id="initial-input"
-              placeholder="Preencha o código de cortesia"
-              value={code}
-              onChange={e => setCode(e.target.value)}
-            />
-            <Button className="w-full" onClick={verifyCode}>
-              Criar
-            </Button>
-          </div>
-        </CardContent>
+        <form onSubmit={verifyCode}>
+          <CardContent className="space-y-4">
+            <div className="space-y-2">
+              <Label htmlFor="initial-input">Código de cortesia</Label>
+              <Input
+                id="initial-input"
+                placeholder="Preencha o código de cortesia"
+                value={code}
+                onChange={e => setCode(e.target.value)}
+                autoFocus
+              />
+              <Button className="w-full" type={'submit'}>
+                Criar
+              </Button>
+            </div>
+          </CardContent>
+        </form>
       </Card>
     </div>
   )
