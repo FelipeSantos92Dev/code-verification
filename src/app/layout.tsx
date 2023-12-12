@@ -7,7 +7,7 @@ const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
   title: 'MeusTickets | AnimeGeek',
-  description: 'Preencha os dados a seguir para receber seu ingresso'
+  description: 'Verificação de código para cortesias de eventos AnimeGeek'
 }
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
