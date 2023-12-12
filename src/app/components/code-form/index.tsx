@@ -24,7 +24,9 @@ export default function CodeForm() {
       await axios.post(apiURL, { code })
       toast.success('Cortesia cadastrada com sucesso')
       setCode('')
-      window.location.reload()
+      setTimeout(() => {
+        window.location.reload()
+      }, 1000)
     } catch (err) {
       toast.error('Erro ao cadastrar cortesia')
     }
