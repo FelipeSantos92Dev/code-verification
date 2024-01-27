@@ -86,10 +86,10 @@ export default function FormComplete() {
   }
 
   return (
-    <div className="w-full max-w-md mx-auto">
+    <div className={'w-full max-w-md mx-auto'}>
       <Card className="space-y-4">
         <CardHeader>
-          <CardTitle className={`text-center`}>Vale Cortesia AnimeGeek 2024</CardTitle>
+          <CardTitle className={`text-center`}>Vale Cortesia CarnaGeek 2024</CardTitle>
           <CardDescription className={`text-center`}>Preencha os dados a seguir</CardDescription>
         </CardHeader>
         <CardContent className="space-y-4">
