@@ -87,6 +87,12 @@ export default function FormComplete() {
 
   return (
     <div className={'w-full max-w-md mx-auto'}>
+      <div className={`text-center text-sm text-gray-500 mb-4`}>
+        Voltar para o portal{' '}
+        <a href="https://carnageek.meusticketsoficial.com.br">
+          <span className={`text-blue-500 hover:text-blue-600`}>MeusTickets</span>
+        </a>
+      </div>
       <Card className="space-y-4">
         <CardHeader>
           <CardTitle className={`text-center`}>Vale Cortesia CarnaGeek 2024</CardTitle>
