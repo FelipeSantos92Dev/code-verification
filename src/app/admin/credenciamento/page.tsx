@@ -35,7 +35,11 @@ export default function Credenciamento() {
   return (
     <div className="w-full max-w-md mx-auto">
       <Card className="space-y-4">
-        <QrScanner onDecode={result => setCode(result)} onError={error => console.log(error?.message)} />
+        <QrScanner
+          onDecode={result => setCode(result)}
+          onError={error => console.log(error?.message)}
+          scanDelay={1000}
+        />
         <CardHeader>
           <CardTitle className={`text-center`}>Cadastro Cortesia AnimeGeek 2024</CardTitle>
           <CardDescription className={`text-center`}>Insira o código da cortesia</CardDescription>
