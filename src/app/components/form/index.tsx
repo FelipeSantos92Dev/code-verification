@@ -36,6 +36,7 @@ export default function FormComplete() {
 
       if (ticket) {
         setVerified(true)
+        handleSubmit()
         toast.success('Código do ingresso verificado')
       } else {
         toast.error('Código do ingresso inválido')
@@ -118,7 +119,7 @@ export default function FormComplete() {
             </Button>
           </div>
 
-          {verified && (
+          {/* {verified && (
             <>
               {/* <div className="border-t pt-4 space-y-2">
                 <Label htmlFor="second-input">Nome Completo</Label>
@@ -137,7 +138,7 @@ export default function FormComplete() {
                   value={email}
                   onChange={e => setEmail(e.target.value)}
                 />
-              </div> */}
+              </div>
               <div className="space-y-2">
                 {/* <Label htmlFor="third-input">Contato whatsapp</Label>
                 <Input
@@ -145,13 +146,13 @@ export default function FormComplete() {
                   placeholder="Preencha com seu número de whatsapp"
                   value={whatsapp}
                   onChange={e => setWhatsapp(e.target.value)}
-                /> */}
+                />
                 <Button className="w-full mt-2" onClick={handleSubmit}>
                   Enviar
                 </Button>
               </div>
             </>
-          )}
+          )} */}
         </CardContent>
       </Card>
     </div>
