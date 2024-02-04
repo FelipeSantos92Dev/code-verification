@@ -1,14 +1,19 @@
-import axios from 'axios'
-
 import { CardTitle, CardDescription, CardHeader, CardContent, Card } from '@/components/ui/card'
 
 const url = 'https://www.meusticketsoficial.com.br/api/v1/tickets/'
 
 async function getTasks() {
-  const response = await axios.get(url)
-  const tickets = response.data
+  const response = await fetch(url, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    next: { revalidate: 5 }
+  })
 
-  return tickets
+  const data = await response.json()
+
+  return data
 }
 
 const Dashboard = async () => {
