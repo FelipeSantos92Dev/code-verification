@@ -3,21 +3,18 @@ import axios from 'axios'
 import { CardTitle, CardDescription, CardHeader, CardContent, Card } from '@/components/ui/card'
 
 async function getTasks() {
-  const response = await fetch('https://www.meusticketsoficial.com.br/api/v1/dash/', {
-    method: 'GET',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    next: { revalidate: 5 }
-  })
+  const url = 'http://localhost:3000/api/v1/dash/'
+  const response = await axios.get(url)
+  console.log(response)
+  const tickets = response.data
 
-  const data = await response.json()
+  //const data = response.data
 
-  return data
+  return tickets
 }
 
 export default async function Admin() {
-  const tickets = await getTasks()
+  //const tickets = await getTasks()
 
   return (
     <div className={'flex flex-col sm:flex-row justify-center gap-5 w-full'}>
@@ -45,7 +42,7 @@ export default async function Admin() {
           <CardDescription className={`text-center`}>CarnaGeek 2024</CardDescription>
         </CardHeader>
         <CardContent className="space-y-2">
-          <p className={`text-center text-6xl`}>{tickets.length}</p>
+          <p className={`text-center text-6xl`}>2</p>
         </CardContent>
       </Card>
     </div>

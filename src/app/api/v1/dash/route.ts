@@ -12,6 +12,8 @@ export async function GET() {
       }
     })
 
+    console.log('[TICKET_GET]', tickets)
+
     return new NextResponse(JSON.stringify(tickets), {
       status: 200,
       headers: {
