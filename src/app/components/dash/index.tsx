@@ -52,7 +52,7 @@ const Dashboard = async () => {
           <CardDescription className={`text-center`}>CarnaGeek 2024</CardDescription>
         </CardHeader>
         <CardContent className="space-y-2">
-          <p className={`text-center text-6xl`}>{presentes.length}</p>
+          <p className={`text-center text-6xl`}>{presentes.length + portaria.length}</p>
         </CardContent>
       </Card>
     </div>
