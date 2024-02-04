@@ -1,4 +1,5 @@
 import CodeForm from '@/app/components/code-form'
+import CreateForm from '@/app/components/create-form'
 import { DataTable } from '@/components/data-table'
 import { columns } from '@/components/ui/columns'
 import axios from 'axios'
@@ -22,7 +23,7 @@ export default async function Tickets() {
 
   return (
     <>
-      <CodeForm />
+      <CreateForm />
       <DataTable data={tickets} columns={columns} />
     </>
   )
