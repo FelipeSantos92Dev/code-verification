@@ -1,4 +1,5 @@
 import CodeForm from '@/app/components/code-form'
+import Dashboard from '@/app/components/dash'
 import { DataTable } from '@/components/data-table'
 import { columns } from '@/components/ui/columns'
 import axios from 'axios'
@@ -24,6 +25,7 @@ export default async function Tickets() {
     <>
       <CodeForm />
       {/* <DataTable data={tickets} columns={columns} /> */}
+      <Dashboard />
     </>
   )
 }

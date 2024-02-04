@@ -2,19 +2,24 @@ import axios from 'axios'
 
 import { CardTitle, CardDescription, CardHeader, CardContent, Card } from '@/components/ui/card'
 
-async function getTasks() {
-  const url = 'http://localhost:3000/api/v1/dash/'
-  const response = await axios.get(url)
-  console.log(response)
-  const tickets = response.data
+const url = 'https://www.meusticketsoficial.com.br/api/v1/tickets/'
 
-  //const data = response.data
+async function getTasks() {
+  const response = await axios.get(url)
+  const tickets = response.data
 
   return tickets
 }
 
-export default async function Admin() {
+const Dashboard = async () => {
   const tickets = await getTasks()
+  //console.log('Tickets', tickets)
+
+  const portaria = tickets.filter((ticket: any) => ticket.name === 'Portaria')
+  //console.log('Pertaria', portaria)
+
+  const presentes = tickets.filter((ticket: any) => ticket.name === 'Validado na portaria')
+  //console.log('Presentes', presentes)
 
   return (
     <div className={'flex flex-col sm:flex-row justify-center gap-5 w-full'}>
@@ -24,7 +29,7 @@ export default async function Admin() {
           <CardDescription className={`text-center`}>Plataforma MeusTickets</CardDescription>
         </CardHeader>
         <CardContent className="space-y-2">
-          <p className={`text-center text-6xl`}>15</p>
+          <p className={`text-center text-6xl`}>90</p>
         </CardContent>
       </Card>
       <Card className={`sm:w-1/4`}>
@@ -33,7 +38,7 @@ export default async function Admin() {
           <CardDescription className={`text-center`}>Portaria UNAMA BR</CardDescription>
         </CardHeader>
         <CardContent className="space-y-2">
-          <p className={`text-center text-6xl`}>15</p>
+          <p className={`text-center text-6xl`}>{portaria.length}</p>
         </CardContent>
       </Card>
       <Card className={`sm:w-1/4`}>
@@ -42,9 +47,11 @@ export default async function Admin() {
           <CardDescription className={`text-center`}>CarnaGeek 2024</CardDescription>
         </CardHeader>
         <CardContent className="space-y-2">
-          <p className={`text-center text-6xl`}>{tickets.length}</p>
+          <p className={`text-center text-6xl`}>{presentes.length}</p>
         </CardContent>
       </Card>
     </div>
   )
 }
+
+export default Dashboard
