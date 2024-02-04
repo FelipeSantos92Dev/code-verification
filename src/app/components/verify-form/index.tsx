@@ -1,17 +1,16 @@
 'use client'
 
 import { useEffect, useState } from 'react'
-import { QrScanner } from '@yudiel/react-qr-scanner'
-
 import { toast } from 'react-hot-toast'
 import axios from 'axios'
+import { QrScanner } from '@yudiel/react-qr-scanner'
 
 import { CardTitle, CardDescription, CardHeader, CardContent, Card } from '@/components/ui/card'
 import { Label } from '@/components/ui/label'
 import { Input } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
 
-export default function VerifyForm() {
+export default function FormComplete() {
   const [code, setCode] = useState('')
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
@@ -22,7 +21,7 @@ export default function VerifyForm() {
 
   const verifyCode = async () => {
     if (code.length < 1) {
-      toast.error('Preencha o código do ingresso')
+      toast.error('Preencha o código de cortesia')
       return
     }
 
@@ -31,19 +30,18 @@ export default function VerifyForm() {
       const ticket = response.data
 
       if (ticket.verified) {
-        toast.error('Ingresso já utilizado')
+        toast.error('Código de cortesia já utilizado')
         return
       }
 
       if (ticket) {
         setVerified(true)
-        toast.success('Ingresso verificado')
+        toast.success('Código de cortesia verificado')
       } else {
-        toast.error('Ingresso inválido')
+        toast.error('Código de cortesia inválido')
       }
     } catch (err) {
-      alert(err)
-      toast.error('Ingresso inválido')
+      toast.error('Código de cortesia inválido')
     }
   }
 
@@ -74,17 +72,17 @@ export default function VerifyForm() {
       const ticket = response.data
 
       if (ticket) {
-        toast.success('ingresso cadastrada com sucesso!')
+        toast.success('Cortesia cadastrada com sucesso!')
         setCode('')
         setName('')
         setEmail('')
         setWhatsapp('')
         setVerified(false)
       } else {
-        toast.error('Erro ao cadastrar ingresso!')
+        toast.error('Erro ao cadastrar cortesia!')
       }
     } catch (err) {
-      toast.error('Erro ao cadastrar ingresso!')
+      toast.error('Erro ao cadastrar cortesia!')
     }
   }
 
@@ -98,20 +96,20 @@ export default function VerifyForm() {
       </div>
       <Card className="space-y-4">
         <CardHeader>
-          <CardTitle className={`text-center`}>Credenciamento CarnaGeek 2024</CardTitle>
-          <CardDescription className={`text-center`}>Posicione o QR Code na área indicada</CardDescription>
+          <CardTitle className={`text-center`}>Vale Cortesia CarnaGeek 2024</CardTitle>
+          <CardDescription className={`text-center`}>Preencha os dados a seguir</CardDescription>
         </CardHeader>
         <CardContent className="space-y-4">
           <div className="space-y-2">
+            <Label htmlFor="initial-input">Código de cortesia</Label>
             <QrScanner
               onDecode={result => setCode(result)}
               onError={error => console.log(error?.message)}
               scanDelay={1000}
             />
-            <Label htmlFor="initial-input">Código do ingresso</Label>
             <Input
               id="initial-input"
-              placeholder="Preencha o Ingresso"
+              placeholder="Preencha o código de cortesia"
               value={code}
               onChange={e => setCode(e.target.value)}
             />

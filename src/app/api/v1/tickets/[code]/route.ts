@@ -57,13 +57,13 @@ export async function DELETE(req: Request, { params }: { params: { code: string 
 
 export async function PATCH(req: Request, { params }: { params: { code: string } }) {
   try {
-    const body = await req.json()
+    // const body = await req.json()
 
-    const { name, email, whatsapp } = body
+    // const { name, email, whatsapp } = body
 
-    if (!name || !email || !whatsapp) {
-      return new NextResponse('Parâmetros incompletos!', { status: 400 })
-    }
+    // if (!name || !email || !whatsapp) {
+    //   return new NextResponse('Parâmetros incompletos!', { status: 400 })
+    // }
 
     if (!params.code) {
       return new NextResponse('Id do código é obrigatório', { status: 400 })
@@ -84,9 +84,9 @@ export async function PATCH(req: Request, { params }: { params: { code: string }
         code: params.code
       },
       data: {
-        name,
-        email,
-        whatsapp,
+        name: 'Validado na portaria',
+        email: 'Validado na portaria',
+        whatsapp: 'Validado na portaria',
         verified: true,
         updatedAt: addHours(new Date(), -3)
       }

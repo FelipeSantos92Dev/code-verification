@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react'
 import { toast } from 'react-hot-toast'
 import axios from 'axios'
+import { QrScanner } from '@yudiel/react-qr-scanner'
 
 import { CardTitle, CardDescription, CardHeader, CardContent, Card } from '@/components/ui/card'
 import { Label } from '@/components/ui/label'
@@ -11,16 +12,16 @@ import { Button } from '@/components/ui/button'
 
 export default function FormComplete() {
   const [code, setCode] = useState('')
-  const [name, setName] = useState('')
-  const [email, setEmail] = useState('')
-  const [whatsapp, setWhatsapp] = useState('')
+  // const [name, setName] = useState('')
+  // const [email, setEmail] = useState('')
+  // const [whatsapp, setWhatsapp] = useState('')
   const [verified, setVerified] = useState(false)
 
   const apiURL = 'api/v1/tickets/'
 
   const verifyCode = async () => {
     if (code.length < 1) {
-      toast.error('Preencha o código de cortesia')
+      toast.error('Preencha o código do ingresso')
       return
     }
 
@@ -29,53 +30,53 @@ export default function FormComplete() {
       const ticket = response.data
 
       if (ticket.verified) {
-        toast.error('Código de cortesia já utilizado')
+        toast.error('Código do ingresso já utilizado')
         return
       }
 
       if (ticket) {
         setVerified(true)
-        toast.success('Código de cortesia verificado')
+        toast.success('Código do ingresso verificado')
       } else {
-        toast.error('Código de cortesia inválido')
+        toast.error('Código do ingresso inválido')
       }
     } catch (err) {
-      toast.error('Código de cortesia inválido')
+      toast.error('Código do ingresso inválido')
     }
   }
 
   const handleSubmit = async () => {
-    if (name.length < 1) {
-      toast.error('Preencha o nome completo')
-      return
-    }
+    // if (name.length < 1) {
+    //   toast.error('Preencha o nome completo')
+    //   return
+    // }
 
-    if (email.length < 1) {
-      toast.error('Preencha o e-mail')
-      return
-    }
+    // if (email.length < 1) {
+    //   toast.error('Preencha o e-mail')
+    //   return
+    // }
 
-    if (whatsapp.length < 1) {
-      toast.error('Preencha o número de whatsapp')
-      return
-    }
+    // if (whatsapp.length < 1) {
+    //   toast.error('Preencha o número de whatsapp')
+    //   return
+    // }
 
-    const data = {
-      name,
-      email,
-      whatsapp
-    }
+    // const data = {
+    //   name,
+    //   email,
+    //   whatsapp
+    // }
 
     try {
-      const response = await axios.patch(apiURL + code, data)
+      const response = await axios.patch(apiURL + code)
       const ticket = response.data
 
       if (ticket) {
         toast.success('Cortesia cadastrada com sucesso!')
         setCode('')
-        setName('')
-        setEmail('')
-        setWhatsapp('')
+        // setName('')
+        // setEmail('')
+        // setWhatsapp('')
         setVerified(false)
       } else {
         toast.error('Erro ao cadastrar cortesia!')
@@ -100,10 +101,15 @@ export default function FormComplete() {
         </CardHeader>
         <CardContent className="space-y-4">
           <div className="space-y-2">
-            <Label htmlFor="initial-input">Código de cortesia</Label>
+            <Label htmlFor="initial-input">Código do ingresso</Label>
+            <QrScanner
+              onDecode={result => setCode(result)}
+              onError={error => console.log(error?.message)}
+              scanDelay={1000}
+            />
             <Input
               id="initial-input"
-              placeholder="Preencha o código de cortesia"
+              placeholder="Preencha o código do ingresso"
               value={code}
               onChange={e => setCode(e.target.value)}
             />
@@ -114,7 +120,7 @@ export default function FormComplete() {
 
           {verified && (
             <>
-              <div className="border-t pt-4 space-y-2">
+              {/* <div className="border-t pt-4 space-y-2">
                 <Label htmlFor="second-input">Nome Completo</Label>
                 <Input
                   id="second-input"
@@ -131,15 +137,15 @@ export default function FormComplete() {
                   value={email}
                   onChange={e => setEmail(e.target.value)}
                 />
-              </div>
+              </div> */}
               <div className="space-y-2">
-                <Label htmlFor="third-input">Contato whatsapp</Label>
+                {/* <Label htmlFor="third-input">Contato whatsapp</Label>
                 <Input
                   id="third-input"
                   placeholder="Preencha com seu número de whatsapp"
                   value={whatsapp}
                   onChange={e => setWhatsapp(e.target.value)}
-                />
+                /> */}
                 <Button className="w-full mt-2" onClick={handleSubmit}>
                   Enviar
                 </Button>
