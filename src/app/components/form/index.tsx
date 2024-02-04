@@ -73,17 +73,17 @@ export default function FormComplete() {
       const ticket = response.data
 
       if (ticket) {
-        toast.success('Cortesia cadastrada com sucesso!')
+        toast.success('Ingresso Válido! Bom Evento!')
         setCode('')
         // setName('')
         // setEmail('')
         // setWhatsapp('')
         setVerified(false)
       } else {
-        toast.error('Erro ao cadastrar cortesia!')
+        toast.error('Erro ao validar ingresso! Tente novamente!')
       }
     } catch (err) {
-      toast.error('Erro ao cadastrar cortesia!')
+      toast.error('Erro ao validar ingresso! Tente novamente!')
     }
   }
 
@@ -97,8 +97,8 @@ export default function FormComplete() {
       </div>
       <Card className="space-y-4">
         <CardHeader>
-          <CardTitle className={`text-center`}>Vale Cortesia CarnaGeek 2024</CardTitle>
-          <CardDescription className={`text-center`}>Preencha os dados a seguir</CardDescription>
+          <CardTitle className={`text-center`}>Credenciamento CarnaGeek 2024</CardTitle>
+          <CardDescription className={`text-center`}>Posicione o QR Code no local indicado</CardDescription>
         </CardHeader>
         <CardContent className="space-y-4">
           <div className="space-y-2">
