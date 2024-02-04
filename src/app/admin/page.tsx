@@ -14,7 +14,7 @@ async function getTasks() {
 }
 
 export default async function Admin() {
-  //const tickets = await getTasks()
+  const tickets = await getTasks()
 
   return (
     <div className={'flex flex-col sm:flex-row justify-center gap-5 w-full'}>
@@ -42,7 +42,7 @@ export default async function Admin() {
           <CardDescription className={`text-center`}>CarnaGeek 2024</CardDescription>
         </CardHeader>
         <CardContent className="space-y-2">
-          <p className={`text-center text-6xl`}>2</p>
+          <p className={`text-center text-6xl`}>{tickets.length}</p>
         </CardContent>
       </Card>
     </div>
