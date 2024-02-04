@@ -42,6 +42,7 @@ export default function VerifyForm() {
         toast.error('Ingresso inválido')
       }
     } catch (err) {
+      alert(err)
       toast.error('Ingresso inválido')
     }
   }
